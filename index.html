@@ -7,21 +7,30 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <script src='http://code.jquery.com/jquery-latest.min.js' type='text/javascript'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <title>Multiple-emails.js by Alplob</title>
+  	<script>
+  	$(function() {
+  		$('#current_emails').text($('#example_email').val());
+  		$('#example_email').multiple_emails();
+  		$('#example_email').change( function(){
+  			$('#current_emails').text($(this).val());
+  		});	
+  	});
+  	</script>
   </head>
 
   <body>
     <div id="container">
       <div class="inner">
-
         <header>
           <h1>Multiple-emails.js</h1>
           <h2>Enter multiple emails in a single input field with jQuery</h2>
         </header>
-
         <section id="downloads" class="clearfix">
           <a href="https://github.com/Alplob/multiple-emails.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
           <a href="https://github.com/Alplob/multiple-emails.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
@@ -44,6 +53,20 @@
 <pre><code>$('#your_selector').val();
 </code></pre>
         </section>
+        
+	<div class='row'>
+		<h2>Example</h2>
+		<div class='form-group'>
+			<div class='col-sm-4'>
+				<h4 for='example_email'>Input email addresses</h4>
+				<input type='text' id='example_email' name='example_email' class='form-control' value='["hello@git.com","tom@net.com"]'>
+			</div>
+			<div class='col-sm-offset-2 col-sm-4'>
+				<h4>Current email addresses</h4>
+				<pre id='current_emails'></pre>
+			</div>
+		</div>
+	</div>
 
         <footer>
           Multiple-emails.js is maintained by <a href="https://github.com/Alplob">Alplob</a><br>
