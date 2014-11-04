@@ -8,5 +8,6 @@ This is an improved version of the original work of Jamie Bradley http://t2a.co/
 New features are:
 - can display emails once the page is loaded
 - check integrity of inputted email address
+- emails are encapsulated in json
 
 
