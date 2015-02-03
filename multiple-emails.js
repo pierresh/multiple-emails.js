@@ -6,7 +6,7 @@
 			var $orig = $(this);
 			$list = $('<ul class="multiple_emails-ul" />'); // create html elements - list of email addresses as unordered list
 
-			if ($(this).val() != '' && Array.isArray($(this).val())) {
+			if ($(this).val() != '') {
 				$.each(jQuery.parseJSON($(this).val()), function( index, val ) {
 					$list.append($('<li class="multiple_emails-email"><span class="email_name">' + val + '</span></li>')
 					  .prepend($('<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>')
