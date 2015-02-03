@@ -6,7 +6,7 @@
 			var $orig = $(this);
 			$list = $('<ul class="multiple_emails-ul" />'); // create html elements - list of email addresses as unordered list
 
-			if ($(this).val() != '') {
+			if ($(this).val() != '' && IsJsonString($(this).val())) {
 				$.each(jQuery.parseJSON($(this).val()), function( index, val ) {
 					$list.append($('<li class="multiple_emails-email"><span class="email_name">' + val + '</span></li>')
 					  .prepend($('<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>')
@@ -44,6 +44,12 @@
  
 			$container.append($list).append($input).insertAfter($(this)); // insert elements into DOM
 
+			function IsJsonString(str) {
+				try { JSON.parse(str); }
+				catch (e) { return false; }
+				return true;
+			}
+
 			function refresh_emails () {
 				var emails = new Array();
 				$('.multiple_emails-email span.email_name').each(function() { emails.push($(this).html());	});
@@ -52,10 +58,8 @@
 			
 			return $(this).hide();
  
-          });
+          	});
 		
-     };
+     	};
 	
-
-	 
 })(jQuery);
