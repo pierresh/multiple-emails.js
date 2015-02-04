@@ -25,7 +25,7 @@
 					display_email($(this));
 				}
 			}).on('blur', function(event){ 
-				display_email($(this)); 
+				if ($(this).val() != '') { display_email($(this)); }
 			});
 
 			var $container = $('<div class="multiple_emails-container" />').click(function() { $input.focus(); } ); // container div
