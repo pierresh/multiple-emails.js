@@ -10,7 +10,7 @@
 				$.each(jQuery.parseJSON($(this).val()), function( index, val ) {
 					$list.append($('<li class="multiple_emails-email"><span class="email_name">' + val + '</span></li>')
 					  .prepend($('<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>')
-						   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
+						   .click(function(e) { $(this).parent('li').remove(); refresh_emails(); e.preventDefault(); })
 					  )
 					);
 				});
