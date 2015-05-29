@@ -12,6 +12,7 @@
 	outline: none; 
 	margin-bottom:3px; 
 	padding-left: 5px; 
+	box-sizing: border-box;
 }
 
 .multiple_emails-container input.multiple_emails-error {	
