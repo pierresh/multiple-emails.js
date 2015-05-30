@@ -1,6 +1,21 @@
 (function( $ ){
  
-	$.fn.multiple_emails = function() {
+	$.fn.multiple_emails = function(theme) {
+		//Set default to use Bootstrap
+		theme = theme || "Bootstrap";
+	
+		var deleteIconHTML = "";
+		if (theme.toLowerCase() == "Bootstrap".toLowerCase())
+		{
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>';
+		}
+		else if (theme.toLowerCase() == "SemanticUI".toLowerCase() || theme.toLowerCase() == "Semantic-UI".toLowerCase() || theme.toLowerCase() == "Semantic UI".toLowerCase()) {
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="remove icon"></i></a>';
+		}
+		else if (theme.toLowerCase() == "Basic".toLowerCase()) {
+			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="basicdeleteicon">Remove</i></a>';
+		}
 		
 		return this.each(function() {
 			var $orig = $(this);
@@ -9,7 +24,7 @@
 			if ($(this).val() != '' && IsJsonString($(this).val())) {
 				$.each(jQuery.parseJSON($(this).val()), function( index, val ) {
 					$list.append($('<li class="multiple_emails-email"><span class="email_name">' + val + '</span></li>')
-					  .prepend($('<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>')
+					  .prepend($(deleteIconHTML)
 						   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
 					  )
 					);
@@ -38,7 +53,7 @@
 				var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
 				if (pattern.test(val) == true) {
 					 $list.append($('<li class="multiple_emails-email"><span class="email_name">' + val + '</span></li>')
-						  .prepend($('<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>')
+						  .prepend($(deleteIconHTML)
 							   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
 						  )
 					);
@@ -50,7 +65,8 @@
 			
 			function refresh_emails () {
 				var emails = new Array();
-				$('.multiple_emails-email span.email_name').each(function() { emails.push($(this).html());	});
+				var container = $orig.siblings('.multiple_emails-container');
+				container.find('.multiple_emails-email span.email_name').each(function() { emails.push($(this).html()); });
 				$orig.val(JSON.stringify(emails)).trigger('change');
 			}
 			
@@ -67,3 +83,13 @@
 	};
 	
 })(jQuery);
+
+//Prevents enter key default
+//This is to prevent the form from submitting with  the submit button
+//when you press enter in the email textbox
+$(document).keypress(
+function(event){
+ if (event.which == '13') {
+	event.preventDefault();
+  }
+});
