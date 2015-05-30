@@ -72,6 +72,8 @@
 				//Remove space, comma and semi-colon from beginning and end of string
 				//Does not remove inside the string as the email will need to be tokenized using space, comma and semi-colon
 				var arr = t.val().trim().replace(/^,|,$/g , '').replace(/^;|;$/g , '');
+				//Remove the double quote
+				arr = arr.replace(/"/g,"");
 				//Split the string into an array, with the space, comma, and semi-colon as the seperator
 				arr = arr.split(/[\s,;]+/);
 				
