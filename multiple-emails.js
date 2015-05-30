@@ -19,7 +19,7 @@
 		
 		return this.each(function() {
 			var $orig = $(this);
-			$list = $('<ul class="multiple_emails-ul" />'); // create html elements - list of email addresses as unordered list
+			var $list = $('<ul class="multiple_emails-ul" />'); // create html elements - list of email addresses as unordered list
 
 			if ($(this).val() != '' && IsJsonString($(this).val())) {
 				$.each(jQuery.parseJSON($(this).val()), function( index, val ) {
