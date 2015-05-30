@@ -6,6 +6,7 @@ Enter multiple emails in a single input field with jQuery.
 This is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
 
 Demo and documentation: http://alplob.github.io/multiple-emails.js/
+
 Forked from: https://github.com/Alplob/multiple-emails.js
 
 Made a few improvements and changes to the original code done by Alplob.
