@@ -1,6 +1,21 @@
+/*
+TODO: 
+Should show a tool-tip or similar to indicate the duplicated emails
+The action at this point is to not keep the duplicate email value in textbox
+and show error, which may confuse the user
+Might need to consider using bootstrap and semanticUI tooltip, or JQuery UI 
+tooltip, or maybe event create or use another custom tooltip plugin
+
+It's important to allow for users to have their own
+defined custom validations for email, e.g. emails ending with @abcd.com 
+*/
+
 (function( $ ){
  
-	$.fn.multiple_emails = function(theme) {
+	$.fn.multiple_emails = function(theme, checkDupEmail) {
+		//Set default to not allow duplicated email values
+		//Used for the display_email() function
+		checkDupEmail = checkDupEmail || true;
 		//Set default to use Bootstrap
 		theme = theme || "Bootstrap";
 	
@@ -48,10 +63,10 @@
 				
 				// Supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
 				if(keynum == 9 || keynum == 32 || keynum == 188) { 
-					display_email($(this));
+					display_email($(this), checkDupEmail);
 				}
 				else if (keynum == 13) {
-					display_email($(this));
+					display_email($(this), checkDupEmail);
 					//Prevents enter key default
 					//This is to prevent the form from submitting with  the submit button
 					//when you press enter in the email textbox
@@ -59,22 +74,31 @@
 				}
 
 			}).on('blur', function(event){ 
-				if ($(this).val() != '') { display_email($(this)); }
+				if ($(this).val() != '') { display_email($(this), checkDupEmail); }
 			});
 
 			var $container = $('<div class="multiple_emails-container" />').click(function() { $input.focus(); } ); // container div
  
 			$container.append($list).append($input).insertAfter($(this)); // insert elements into DOM
 
-			function display_email(t) {
-				//value of input could be a long line of copy-pasted emails, not just a single email
+			/*
+			t is the text input device.
+			Value of the input could be a long line of copy-pasted emails, not just a single email.
+			As such, the string is tokenized, with each token validated individually.
+			
+			If the dupEmailCheck variable is set to true, scans for duplicate emails, and invalidates input if found.
+			Otherwise allows emails to have duplicated values if false.
+			*/
+			function display_email(t, dupEmailCheck) {
+				
+				var dupEmailFound = false;
 
 				//Remove space, comma and semi-colon from beginning and end of string
 				//Does not remove inside the string as the email will need to be tokenized using space, comma and semi-colon
 				var arr = t.val().trim().replace(/^,|,$/g , '').replace(/^;|;$/g , '');
 				//Remove the double quote
 				arr = arr.replace(/"/g,"");
-				//Split the string into an array, with the space, comma, and semi-colon as the seperator
+				//Split the string into an array, with the space, comma, and semi-colon as the separator
 				arr = arr.split(/[\s,;]+/);
 				
 				var errorEmails = new Array(); //New array to contain the errors
@@ -82,7 +106,11 @@
 				var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
 				
 				for	(var i = 0; i < arr.length; i++) {
-					if (pattern.test(arr[i]) == true) {
+					//Check if the email is already added, only if dupEmailCheck is set to true
+					if ( dupEmailCheck == true && $orig.val().indexOf(arr[i]) != -1 ) {
+						dupEmailFound = true;
+					}
+					else if (pattern.test(arr[i]) == true) {
 						$list.append($('<li class="multiple_emails-email"><span class="email_name">' + arr[i] + '</span></li>')
 							  .prepend($(deleteIconHTML)
 								   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
@@ -92,7 +120,8 @@
 					else
 						errorEmails.push(arr[i]);
 				}
-				if(errorEmails.length > 0)
+				//If erroneous emails found, or if duplicate email found
+				if(errorEmails.length > 0 || dupEmailFound == true)
 					t.val(errorEmails.join("; ")).addClass('multiple_emails-error');
 				else
 					t.val("");
