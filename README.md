@@ -10,4 +10,5 @@ New features are:
 - check integrity of inputted email address
 - emails are encapsulated in json
 - added support for copy and pasting bulk emails in the input field
+- works very well with Bootstrap and Semantic UI
 
