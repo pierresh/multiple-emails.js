@@ -1,33 +1,26 @@
-/*
-TODO: 
-Should show a tool-tip or similar to indicate the duplicated emails
-The action at this point is to not keep the duplicate email value in textbox
-and show error, which may confuse the user
-Might need to consider using bootstrap and semanticUI tooltip, or JQuery UI 
-tooltip, or maybe event create or use another custom tooltip plugin
-
-It's important to allow for users to have their own
-defined custom validations for email, e.g. emails ending with @abcd.com 
-*/
-
 (function( $ ){
  
-	$.fn.multiple_emails = function(theme, checkDupEmail) {
-		//Set default to not allow duplicated email values
-		//Used for the display_email() function
-		checkDupEmail = checkDupEmail || true;
-		//Set default to use Bootstrap
-		theme = theme || "Bootstrap";
-	
+	$.fn.multiple_emails = function(options) {
+		
+		// Default options
+		var defaults = {
+			checkDupEmail: true,
+			theme: "Bootstrap",
+			position: "top"
+		};
+		
+		// Merge send options with defaults
+		var settings = $.extend( {}, defaults, options );
+		
 		var deleteIconHTML = "";
-		if (theme.toLowerCase() == "Bootstrap".toLowerCase())
+		if (settings.theme.toLowerCase() == "Bootstrap".toLowerCase())
 		{
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>';
 		}
-		else if (theme.toLowerCase() == "SemanticUI".toLowerCase() || theme.toLowerCase() == "Semantic-UI".toLowerCase() || theme.toLowerCase() == "Semantic UI".toLowerCase()) {
+		else if (settings.theme.toLowerCase() == "SemanticUI".toLowerCase() || settings.theme.toLowerCase() == "Semantic-UI".toLowerCase() || settings.theme.toLowerCase() == "Semantic UI".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="remove icon"></i></a>';
 		}
-		else if (theme.toLowerCase() == "Basic".toLowerCase()) {
+		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="basicdeleteicon">Remove</i></a>';
 		}
@@ -39,7 +32,7 @@ defined custom validations for email, e.g. emails ending with @abcd.com
 
 			if ($(this).val() != '' && IsJsonString($(this).val())) {
 				$.each(jQuery.parseJSON($(this).val()), function( index, val ) {
-					$list.append($('<li class="multiple_emails-email"><span class="email_name">' + val + '</span></li>')
+					$list.append($('<li class="multiple_emails-email"><span class="email_name" data-email="' + val.toLowerCase() + '">' + val + '</span></li>')
 					  .prepend($(deleteIconHTML)
 						   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
 					  )
@@ -63,10 +56,10 @@ defined custom validations for email, e.g. emails ending with @abcd.com
 				
 				// Supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
 				if(keynum == 9 || keynum == 32 || keynum == 188) { 
-					display_email($(this), checkDupEmail);
+					display_email($(this), settings.checkDupEmail);
 				}
 				else if (keynum == 13) {
-					display_email($(this), checkDupEmail);
+					display_email($(this), settings.checkDupEmail);
 					//Prevents enter key default
 					//This is to prevent the form from submitting with  the submit button
 					//when you press enter in the email textbox
@@ -74,12 +67,16 @@ defined custom validations for email, e.g. emails ending with @abcd.com
 				}
 
 			}).on('blur', function(event){ 
-				if ($(this).val() != '') { display_email($(this), checkDupEmail); }
+				if ($(this).val() != '') { display_email($(this), settings.checkDupEmail); }
 			});
 
 			var $container = $('<div class="multiple_emails-container" />').click(function() { $input.focus(); } ); // container div
  
-			$container.append($list).append($input).insertAfter($(this)); // insert elements into DOM
+			// insert elements into DOM
+			if (settings.position.toLowerCase() === "top")
+				$container.append($list).append($input).insertAfter($(this));
+			else
+				$container.append($input).append($list).insertBefore($(this));
 
 			/*
 			t is the text input device.
@@ -91,8 +88,6 @@ defined custom validations for email, e.g. emails ending with @abcd.com
 			*/
 			function display_email(t, dupEmailCheck) {
 				
-				var dupEmailFound = false;
-
 				//Remove space, comma and semi-colon from beginning and end of string
 				//Does not remove inside the string as the email will need to be tokenized using space, comma and semi-colon
 				var arr = t.val().trim().replace(/^,|,$/g , '').replace(/^;|;$/g , '');
@@ -107,8 +102,10 @@ defined custom validations for email, e.g. emails ending with @abcd.com
 				
 				for	(var i = 0; i < arr.length; i++) {
 					//Check if the email is already added, only if dupEmailCheck is set to true
-					if ( dupEmailCheck == true && $orig.val().indexOf(arr[i]) != -1 ) {
-						dupEmailFound = true;
+					if ( dupEmailCheck === true && $orig.val().indexOf(arr[i]) != -1 ) {
+						var existingElement = $list.find('.email_name[data-email=' + arr[i].toLowerCase().replace('.', '\\.').replace('@', '\\@') + ']');
+						existingElement.css('font-weight', 'bold');
+						setTimeout(function() { existingElement.css('font-weight', ''); }, 1500);
 					}
 					else if (pattern.test(arr[i]) == true) {
 						$list.append($('<li class="multiple_emails-email"><span class="email_name">' + arr[i] + '</span></li>')
@@ -120,8 +117,8 @@ defined custom validations for email, e.g. emails ending with @abcd.com
 					else
 						errorEmails.push(arr[i]);
 				}
-				//If erroneous emails found, or if duplicate email found
-				if(errorEmails.length > 0 || dupEmailFound == true)
+				// If erroneous emails found, or if duplicate email found
+				if(errorEmails.length > 0)
 					t.val(errorEmails.join("; ")).addClass('multiple_emails-error');
 				else
 					t.val("");

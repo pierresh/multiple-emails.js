@@ -20,13 +20,11 @@
 	<link type="text/css" rel="stylesheet" href="./multiple-emails.css" />
 
 	<script type="text/javascript">
-		//$('#formSharingEmail').multiple_emails("SemanticUI");
-		//$('#formSharingEmail').multiple_emails("basic")
-		
+	
 		//Plug-in function for the bootstrap version of the multiple email
 		$(function() {
 			//To render the input device to multiple email input using BootStrap icon
-			$('#example_emailBS').multiple_emails();
+			$('#example_emailBS').multiple_emails({position: "bottom"});
 			//OR $('#example_emailBS').multiple_emails("Bootstrap");
 			
 			//Shows the value of the input device, which is in JSON format
@@ -39,7 +37,7 @@
 		//Plug-in function for the Semantic UI version of the multiple email
 		$(function() {
 			//To render the input device to multiple email input using SemanticUI icon
-			$('#example_emailSUI').multiple_emails("SemanticUI");
+			$('#example_emailSUI').multiple_emails({theme: "SemanticUI"});
 			
 			//Shows the value of the input device, which is in JSON format
 			$('#current_emailsSUI').text($('#example_emailSUI').val());
@@ -51,7 +49,7 @@
 		//Plug-in function for the bootstrap version of the multiple email
 		$(function() {
 			//To render the input device to multiple email input using a simple hyperlink text
-			$('#example_emailB').multiple_emails("Basic");
+			$('#example_emailB').multiple_emails({theme: "Basic"});
 			
 			//Shows the value of the input device, which is in JSON format
 			$('#current_emailsB').text($('#example_emailB').val());
