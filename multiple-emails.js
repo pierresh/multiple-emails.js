@@ -103,12 +103,14 @@
 				for	(var i = 0; i < arr.length; i++) {
 					//Check if the email is already added, only if dupEmailCheck is set to true
 					if ( dupEmailCheck === true && $orig.val().indexOf(arr[i]) != -1 ) {
-						var existingElement = $list.find('.email_name[data-email=' + arr[i].toLowerCase().replace('.', '\\.').replace('@', '\\@') + ']');
-						existingElement.css('font-weight', 'bold');
-						setTimeout(function() { existingElement.css('font-weight', ''); }, 1500);
+						new function () {
+							var existingElement = $list.find('.email_name[data-email=' + arr[i].toLowerCase().replace('.', '\\.').replace('@', '\\@') + ']');
+							existingElement.css('font-weight', 'bold');
+							setTimeout(function() { existingElement.css('font-weight', ''); }, 1500);
+						}(); // Use a IIFE function to create a new scope so existingElement won't be overriden
 					}
 					else if (pattern.test(arr[i]) == true) {
-						$list.append($('<li class="multiple_emails-email"><span class="email_name">' + arr[i] + '</span></li>')
+						$list.append($('<li class="multiple_emails-email"><span class="email_name" data-email="' + arr[i].toLowerCase() + '">' + arr[i] + '</span></li>')
 							  .prepend($(deleteIconHTML)
 								   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
 							  )
