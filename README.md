@@ -3,7 +3,7 @@ multiple-emails.js
 
 Enter multiple emails in a single input field with jQuery.
 
-This is a frok from https://github.com/alplob/multiple-emails.js
+This is a fork from https://github.com/alplob/multiple-emails.js
 
 ## Recent features are:
 
