@@ -9,6 +9,8 @@
 			position: "top"
 		};
 		
+		var regexpForCharDelimiters = new RegExp('.+[;,\\s]$', 'i');
+		
 		// Merge send options with defaults
 		var settings = $.extend( {}, defaults, options );
 		
@@ -43,8 +45,10 @@
 			var $input = $('<input type="text" class="multiple_emails-input text-left" />').on('keyup', function(e) { // input
 				$(this).removeClass('multiple_emails-error');
 				var input_length = $(this).val().length;
-				
+				var input_str = $(this).val();
 				var keynum;
+				
+				
 				if(window.event){ // IE					
 					keynum = e.keyCode;
 				}
@@ -55,7 +59,7 @@
 				//if(event.which == 8 && input_length == 0) { $list.find('li').last().remove(); } //Removes last item on backspace with no input
 				
 				// Supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
-				if(keynum == 9 || keynum == 32 || keynum == 188) { 
+				if(keynum == 9 || keynum == 32 || keynum == 188 || IsEndingWithDelimiter(input_str)) { 
 					display_email($(this), settings.checkDupEmail);
 				}
 				else if (keynum == 13) {
@@ -140,6 +144,12 @@
 				try { JSON.parse(str); }
 				catch (e) {	return false; }
 				return true;
+			}
+			
+			function IsEndingWithDelimiter(str){
+				var bool = regexpForCharDelimiters.test(str);
+				return bool;
+			
 			}
 			
 			return $(this).hide();
