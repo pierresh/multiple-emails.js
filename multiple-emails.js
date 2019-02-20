@@ -14,12 +14,14 @@
 		var settings = $.extend( {}, defaults, options );
 		
 		var deleteIconHTML = "";
-		if (settings.theme.toLowerCase() == "Bootstrap".toLowerCase())
-		{
+		if (settings.theme.toLowerCase() == "Bootstrap".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>';
 		}
 		else if (settings.theme.toLowerCase() == "SemanticUI".toLowerCase() || settings.theme.toLowerCase() == "Semantic-UI".toLowerCase() || settings.theme.toLowerCase() == "Semantic UI".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="remove icon"></i></a>';
+		}
+		else if (settings.theme.toLowerCase() == "FontAwesome".toLowerCase() || settings.theme.toLowerCase() == "Font Awesome".toLowerCase()) {
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="fas fa-times"></i></a>';
 		}
 		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
