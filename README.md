@@ -7,10 +7,14 @@ This is forked from Pierre Clavequin's project at https://github.com/pierresh/mu
 
 ## New features are:
 
+- "Basic" theme is now the default theme
+- "Basic" theme now displays a "heavy multiplication x" (&#10006;) for the Remove icon
+- rename old "Basic" theme to "Text" for clarity
 - rename "Bootstrap" theme to "Bootstrap3" for clarity
-- new "FontAwesome" theme
-- new "Simple" theme
-- add option to validate input or not (default is true)
+- new "FontAwesome5" theme
+- add option to "validate" input or not (default is true)
+
+## Original README...
 
 This is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
 
@@ -24,8 +28,11 @@ This is an improved version of the original work of Jamie Bradley http://t2a.co/
 
 ## Options
 
+```javascript
 	$(selector).multiple_emails({
-	   position: 'top', // Display the added emails above the input
-	   theme: 'bootstrap', // Bootstrap is the default theme
-	   checkDupEmail: true // Should check for duplicate emails added
+	   position: 'top',       // Display the added emails above the input
+	   theme: 'FontAwesome5', // Basic is the default theme
+	   checkDupEmail: true,   // Should check for duplicate emails added
+	   validate: false        // Should not validate input as email address(es)
 	});
+```
