@@ -6,7 +6,7 @@
 		var defaults = {
 			checkDupEmail: true,
 			validate: true,
-			theme: "Bootstrap3",
+			theme: "Basic",
 			position: "top",
 			placeholder: ""
 		};
@@ -15,21 +15,22 @@
 		var settings = $.extend( {}, defaults, options );
 
 		var deleteIconHTML = "";
-		if (settings.theme.toLowerCase() == "Bootstrap3".toLowerCase()) {
+		if (settings.theme.toLowerCase() == "Bootstrap3".toLowerCase() || settings.theme.toLowerCase() == "Bootstrap 3".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>';
 		}
 		else if (settings.theme.toLowerCase() == "SemanticUI".toLowerCase() || settings.theme.toLowerCase() == "Semantic-UI".toLowerCase() || settings.theme.toLowerCase() == "Semantic UI".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="remove icon"></i></a>';
 		}
-		else if (settings.theme.toLowerCase() == "FontAwesome".toLowerCase() || settings.theme.toLowerCase() == "Font Awesome".toLowerCase()) {
+		else if (settings.theme.toLowerCase() == "FontAwesome5".toLowerCase() || settings.theme.toLowerCase() == "Font Awesome 5".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="fas fa-times"></i></a>';
 		}
-		else if (settings.theme.toLowerCase() == "Simple".toLowerCase()) {
-			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="simpledeleteicon">&#10006;</span></a>';
+		else if (settings.theme.toLowerCase() == "Text".toLowerCase()) {
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="textdeleteicon">[Remove]</span></a>';
 		}
-		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
+		else { // if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
-			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="basicdeleteicon">Remove</i></a>';
+			//uses the HTML character 'heavy times sign'; https://www.fileformat.info/info/unicode/char/2716/index.htm
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="basicdeleteicon">&#10006;</span></a>';
 		}
 
 		return this.each(function() {
