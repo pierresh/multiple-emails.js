@@ -28,9 +28,9 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 
 ```javascript
 $(selector).multiple_emails({
-    position: 'top',      // Display the added emails above the input
-    theme: 'FontAwesome', // Basic is the default theme
-    checkDupEmail: true,  // Should check for duplicate emails added
-    validate: false       // Should not validate input as email address(es)
+    position: 'top',          // Display the added emails above the input
+    theme: 'FontAwesome',     // Basic is the default theme
+    checkForDuplicates: true, // Should check for duplicate emails added
+    validate: false           // Should not check for valid email address format
 });
 ```
