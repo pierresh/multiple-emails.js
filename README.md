@@ -7,9 +7,10 @@ This is forked from Pierre Clavequin's project at https://github.com/pierresh/mu
 
 ## New features are:
 
-- new FontAwesome theme
-- new Simple theme
-- optionally validate input
+- rename "Bootstrap" theme to "Bootstrap3" for clarity
+- new "FontAwesome" theme
+- new "Simple" theme
+- add option to validate input or not (default is true)
 
 This is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
 
