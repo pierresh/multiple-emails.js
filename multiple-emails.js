@@ -56,7 +56,7 @@
 				}
 				else if(e.which){ // Netscape/Firefox/Opera					
 					keynum = e.which;
-                }
+				}
 				
 				//if(event.which == 8 && input_length == 0) { $list.find('li').last().remove(); } //Removes last item on backspace with no input
 				
