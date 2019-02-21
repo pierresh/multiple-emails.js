@@ -29,7 +29,7 @@
 		}
 		else { // if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			// Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
-			            // uses the 'heavy multiplication x' HTML entity; https://www.fileformat.info/info/unicode/char/2716/index.htm
+			// uses the 'heavy multiplication x' HTML entity; https://www.fileformat.info/info/unicode/char/2716/index.htm
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="basicdeleteicon">&#10006;</span></a>';
 		}
 
