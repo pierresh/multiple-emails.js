@@ -11,10 +11,10 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 
 - "Basic" theme is now the default theme
 - "Basic" theme now displays a "heavy multiplication x" (&#10006;) for the Remove icon
-- rename old "Basic" theme to "Text" for clarity
-- rename "Bootstrap" theme to "Bootstrap3" for clarity
-- new "FontAwesome" theme
-- add option to "validate" input or not (default is true)
+- renamed old "Basic" theme to "Text" for clarity
+- renamed "Bootstrap" theme to "Bootstrap3" for clarity
+- added new "FontAwesome" theme
+- added option to "validate" input or not (default is true)
 
 ## New features added to Jamie's work:
 
