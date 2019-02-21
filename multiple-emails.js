@@ -23,6 +23,9 @@
 		else if (settings.theme.toLowerCase() == "FontAwesome".toLowerCase() || settings.theme.toLowerCase() == "Font Awesome".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="fas fa-times"></i></a>';
 		}
+		else if (settings.theme.toLowerCase() == "Simple".toLowerCase()) {
+			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><span class="simpledeleteicon">&#10006;</span></a>';
+		}
 		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="basicdeleteicon">Remove</i></a>';
