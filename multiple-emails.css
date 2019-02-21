@@ -40,4 +40,5 @@
 .multiple_emails-close { 
 	float:left; 
 	margin:0 3px;
+	text-decoration:none;
 }
