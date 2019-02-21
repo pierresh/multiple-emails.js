@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset='utf-8'>
+	<meta charset="utf-8">
 	<title>Multiple Emails</title>
 
 	<!-- For the plug-in dependencies -->
-	<script type="text/javascript" src='http://code.jquery.com/jquery-latest.min.js'></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<!-- For Semantic UI Button -->
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.2/semantic.min.css" />
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.2/semantic.min.js"></script>
 
-	<!-- For Bootstrap UI Button -->
+	<!-- For Bootstrap3 UI Button -->
 	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<!-- For FontAwesome UI button -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-	<script type="text/javascript" src="./multiple-emails.js"></script>
 	<link type="text/css" rel="stylesheet" href="./multiple-emails.css" />
+	<script type="text/javascript" src="./multiple-emails.js"></script>
 
 	<script type="text/javascript">
 
-		// Plug-in function for the bootstrap version of the multiple email
+		// Plug-in function for the Bootstrap3 version of multiple-emails
 		$(function() {
 			//To render the input device to multiple email input using BootStrap3 icon
 			$('#example_emailBS').multiple_emails({theme: "Bootstrap3"});
@@ -35,7 +35,7 @@
 			});
 		});
 
-		// Plug-in function for the Semantic UI version of the multiple email
+		// Plug-in function for the Semantic UI version of multiple-emails
 		$(function() {
 			//To render the input device to multiple email input using SemanticUI icon
 			$('#example_emailSUI').multiple_emails({theme: "SemanticUI"});
@@ -47,7 +47,7 @@
 			});
 		});
 
-		// Plug-in function for the FontAwesome version of the multiple email
+		// Plug-in function for the FontAwesome version of multiple-emails
 		$(function() {
 			//To render the input device to multiple email input using a simple hyperlink text
 			$('#example_emailFA').multiple_emails({theme: "FontAwesome"});
@@ -59,7 +59,7 @@
 			});
 		});
 
-		// Plug-in function for the Text version of the multiple email
+		// Plug-in function for the Text version of multiple-emails
 		$(function() {
 			//To render the input device to multiple email input using a simple hyperlink text
 			$('#example_emailT').multiple_emails({theme: "Text"});
@@ -71,7 +71,7 @@
 			});
 		});
 
-		// Plug-in function for the basic version of the multiple email
+		// Plug-in function for the Basic version of he multiple-emails
 		$(function() {
 			//To render the input device to multiple email input using a simple hyperlink text
 			$('#example_emailB').multiple_emails({theme: "Basic"});
@@ -86,7 +86,12 @@
 </head>
 <body>
 
-	<!-- The container class CSS is specified in bootstrap. It is just there for the presentation. -->
+	<!--
+		This example page uses Bootstrap for layout. The container, row,
+		form-group, and col- classes are just there for presentation. The
+		multiple-emails library does not depend on Bootstrap.
+	-->
+
 	<div class='container'>
 		<div class='row'>
 			<h2>Bootstrap3 Example</h2>
@@ -104,7 +109,6 @@
 	</div>
 	<br/>
 
-	<!-- The container class CSS is specified in bootstrap. It is just there for the presentation. -->
 	<div class='container'>
 		<div class='row'>
 			<h2>SemanticUI Example</h2>
@@ -122,7 +126,6 @@
 	</div>
 	<br/>
 
-	<!-- The container class CSS is specified in bootstrap. It is just there for the presentation. -->
 	<div class='container'>
 		<div class='row'>
 			<h2>FontAwesome Example</h2>
@@ -140,7 +143,6 @@
 	</div>
 	<br/>
 
-	<!-- The container class CSS is specified in bootstrap. It is just there for the presentation. -->
 	<div class='container'>
 		<div class='row'>
 			<h2>Text Example</h2>
@@ -158,7 +160,6 @@
 	</div>
 	<br/>
 
-	<!-- The container class CSS is specified in bootstrap. It is just there for the presentation. -->
 	<div class='container'>
 		<div class='row'>
 			<h2>Basic Example</h2>
