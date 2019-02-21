@@ -3,22 +3,20 @@ multiple-emails.js
 
 Enter multiple emails in a single input field with jQuery.
 
-This is forked from Pierre Clavequin's project at https://github.com/pierresh/multiple-emails.js.
+This project is forked from Pierre Clavequin's project at https://github.com/pierresh/multiple-emails.js.
 
-## New features are:
+Pierre's project is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
+
+## New features added to Pierre's work:
 
 - "Basic" theme is now the default theme
 - "Basic" theme now displays a "heavy multiplication x" (&#10006;) for the Remove icon
 - rename old "Basic" theme to "Text" for clarity
 - rename "Bootstrap" theme to "Bootstrap3" for clarity
-- new "FontAwesome5" theme
+- new "FontAwesome" theme
 - add option to "validate" input or not (default is true)
 
-## Original README...
-
-This is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
-
-## New features are:
+## New features added to Jamie's work:
 
 - can display emails once the page is loaded
 - check integrity of inputted email address

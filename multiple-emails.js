@@ -21,7 +21,7 @@
 		else if (settings.theme.toLowerCase() == "SemanticUI".toLowerCase() || settings.theme.toLowerCase() == "Semantic-UI".toLowerCase() || settings.theme.toLowerCase() == "Semantic UI".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="remove icon"></i></a>';
 		}
-		else if (settings.theme.toLowerCase() == "FontAwesome5".toLowerCase() || settings.theme.toLowerCase() == "Font Awesome 5".toLowerCase()) {
+		else if (settings.theme.toLowerCase() == "FontAwesome".toLowerCase() || settings.theme.toLowerCase() == "Font Awesome".toLowerCase()) {
 			deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><i class="fas fa-times"></i></a>';
 		}
 		else if (settings.theme.toLowerCase() == "Text".toLowerCase()) {
