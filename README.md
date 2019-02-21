@@ -14,7 +14,7 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 - renamed old "Basic" theme to "Text" for clarity
 - renamed "Bootstrap" theme to "Bootstrap3" for clarity
 - added new "FontAwesome" theme
-- added option to "validate" input or not (default is true)
+- added option to "checkForEmail" formatting or not (default is true)
 
 ## New features added to Jamie's work by Pierre (and others):
 
