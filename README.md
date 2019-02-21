@@ -31,7 +31,7 @@ $(selector).multiple_emails({
     position: 'top',          // Display the added emails above the input
     theme: 'FontAwesome',     // Basic is the default theme
     checkForDuplicates: true, // Should check for duplicate emails added
-    validate: false,          // Should not check for valid email address format
+    checkForEmail: false,     // Should not check for valid email address format
     placeholder: 'Email'      // Use placeholder text
 });
 ```

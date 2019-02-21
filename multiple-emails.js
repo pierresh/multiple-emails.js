@@ -5,7 +5,7 @@
 		// Default options
 		var defaults = {
 			checkForDuplicates: true,
-			validate: true,
+			checkForEmail: true,
 			theme: "Basic",
 			position: "top",
 			placeholder: ""
@@ -62,20 +62,20 @@
 
 				// if(event.which == 8 && input_length == 0) { $list.find('li').last().remove(); } //Removes last item on backspace with no input
 
-				// Supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
-				if(keynum == 9 || keynum == 32 || keynum == 188) {
-					display_email($(this), settings.checkForDuplicates, settings.validate);
+				// For email addresses, supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
+				if (settings.checkForEmail === true && (keynum == 9 || keynum == 32 || keynum == 188)) {
+					display_email($(this), settings.checkForDuplicates, settings.checkForEmail);
 				}
 				else if (keynum == 13) {
-					display_email($(this), settings.checkForDuplicates, settings.validate);
+					display_email($(this), settings.checkForDuplicates, settings.checkForEmail);
 					// Prevents enter key default
-					// This is to prevent the form from submitting with  the submit button
+					// This is to prevent the form from submitting with the submit button
 					// when you press enter in the email textbox
 					e.preventDefault();
 				}
 
 			}).on('blur', function(event){
-				if ($(this).val() != '') { display_email($(this), settings.checkForDuplicates, settings.validate); }
+				if ($(this).val() != '') { display_email($(this), settings.checkForDuplicates, settings.checkForEmail); }
 			});
 
 			var $container = $('<div class="multiple_emails-container" />').click(function() { $input.focus(); } ); // container div
@@ -89,21 +89,26 @@
 			/*
 			t is the text input device.
 			Value of the input could be a long line of copy-pasted emails, not just a single email.
-			As such, the string is tokenized, with each token validated individually if validate
+			As such, the string is tokenized, with each token validated individually if checkForEmail
 			variable is set to true.
 
 			If the checkForDuplicates variable is set to true, scans for duplicate emails, and
 			invalidates input if found. Otherwise allows emails to have duplicated values if false.
 			*/
-			function display_email(t, checkForDuplicates, validate) {
+			function display_email(t, checkForDuplicates, checkForEmail) {
 
 				// Remove space, comma and semi-colon from beginning and end of string
 				// Does not remove inside the string as the email will need to be tokenized using space, comma and semi-colon
 				var arr = t.val().trim().replace(/^,|,$/g , '').replace(/^;|;$/g , '');
-				// Remove the double quote
-				arr = arr.replace(/"/g,"");
-				// Split the string into an array, with the space, comma, and semi-colon as the separator
-				arr = arr.split(/[\s,;]+/);
+				if (checkForEmail) {
+					// Remove the double quote
+					arr = arr.replace(/"/g,"");
+					// Split the string into an array, with the space, comma, and semi-colon as the separator
+					arr = arr.split(/[\s,;]+/);
+				}
+				else {
+					arr = arr.split();
+				}
 
 				var errorEmails = new Array(); // New array to contain the errors
 
@@ -120,15 +125,15 @@
 							}(); // Use a IIFE function to create a new scope so existingElement won't be overriden
 						}
 					}
-					// Check if the email is a valid address, only if validate is set to true
-					else if (validate === true && pattern.test(arr[i]) == true) {
+					// Check if the email is a valid address, only if checkForEmail is set to true
+					else if (checkForEmail === true && pattern.test(arr[i]) == true) {
 						$list.append($('<li class="multiple_emails-email"><span class="email_name" data-email="' + arr[i].toLowerCase() + '">' + arr[i] + '</span></li>')
 							  .prepend($(deleteIconHTML)
 								   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
 							  )
 						);
 					}
-					else if (validate === false) {
+					else if (checkForEmail === false) {
 						$list.append($('<li class="multiple_emails-email"><span class="email_name" data-email="' + arr[i].toLowerCase() + '">' + arr[i] + '</span></li>')
 							  .prepend($(deleteIconHTML)
 								   .click(function(e) { $(this).parent().remove(); refresh_emails(); e.preventDefault(); })
