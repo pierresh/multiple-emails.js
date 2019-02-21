@@ -27,10 +27,10 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 ## Options
 
 ```javascript
-	$(selector).multiple_emails({
-	   position: 'top',       // Display the added emails above the input
-	   theme: 'FontAwesome5', // Basic is the default theme
-	   checkDupEmail: true,   // Should check for duplicate emails added
-	   validate: false        // Should not validate input as email address(es)
-	});
+$(selector).multiple_emails({
+   position: 'top',       // Display the added emails above the input
+   theme: 'FontAwesome5', // Basic is the default theme
+   checkDupEmail: true,   // Should check for duplicate emails added
+   validate: false        // Should not validate input as email address(es)
+});
 ```
