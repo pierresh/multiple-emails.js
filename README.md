@@ -10,7 +10,7 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 ## New features added to Pierre's work by John:
 
 - "Basic" theme is now the default theme
-- "Basic" theme now displays a "heavy multiplication x" (&#10006;) for the Remove icon
+- "Basic" theme now displays a "heavy multiplication x" (`&#10006;` &#10006;) for the Remove icon
 - renamed old "Basic" theme to "Text" for clarity
 - renamed "Bootstrap" theme to "Bootstrap3" for clarity
 - added new "FontAwesome" theme
