@@ -11,7 +11,7 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 
 - "Basic" theme is now the default theme
 - "Basic" theme now displays a "heavy multiplication x" (`&#10006;` &#10006;) for the Remove icon
-- renamed old "Basic" theme to "Text" for clarity
+- renamed old "Basic" theme to "Text" (shows the word "Remove") for clarity
 - renamed "Bootstrap" theme to "Bootstrap3" for clarity
 - added new "FontAwesome" theme
 - added option to "checkForEmail" formatting or not (default is true);
