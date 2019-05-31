@@ -16,6 +16,7 @@ Pierre's project is an improved version of the original work of Jamie Bradley ht
 - added new "FontAwesome" theme
 - added option to "checkForEmail" formatting or not (default is true);
   this allows the input field to be used for any generic text
+- update border styling of widget and input field
 
 ## New features added to Jamie's work by Pierre (and others):
 
