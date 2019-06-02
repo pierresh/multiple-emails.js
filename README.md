@@ -3,9 +3,23 @@ multiple-emails.js
 
 Enter multiple emails in a single input field with jQuery.
 
-This is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
+This project is forked from Pierre Clavequin's project at https://github.com/pierresh/multiple-emails.js.
 
-## New features are:
+Pierre's project is an improved version of the original work of Jamie Bradley http://t2a.co/blog/index.php/multiple-value-input-field-with-jquery/.
+
+## New features added to Pierre's work by John:
+
+- "Basic" theme is now the default theme
+- "Basic" theme now displays a "heavy multiplication x" (`&#10006;` &#10006;) for the Remove icon
+- renamed old "Basic" theme to "Text" (shows the word "Remove") for clarity
+- renamed "Bootstrap" theme to "Bootstrap3" for clarity
+- added new "FontAwesome" theme
+- added option to "checkForEmail" formatting or not (default is true);
+  this allows the input field to be used for any generic text
+- update border styling of widget and input field
+
+## New features added to Jamie's work by Pierre (and others):
+
 - can display emails once the page is loaded
 - check integrity of inputted email address
 - emails are encapsulated in json
@@ -14,8 +28,12 @@ This is an improved version of the original work of Jamie Bradley http://t2a.co/
 
 ## Options
 
-	$(selector).multiple_emails({
-	   position: 'top', // Display the added emails above the input
-	   theme: 'bootstrap', // Bootstrap is the default theme
-	   checkDupEmail: true // Should check for duplicate emails added
-	});
+```javascript
+$(selector).multiple_emails({
+    position: 'top',          // Display the added emails above the input
+    theme: 'FontAwesome',     // Basic is the default theme
+    checkForDuplicates: true, // Should check for duplicate emails added
+    checkForEmail: false,     // Should not check for valid email address format
+    placeholder: 'Email'      // Use placeholder text
+});
+```
