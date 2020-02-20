@@ -19,3 +19,11 @@ This is an improved version of the original work of Jamie Bradley http://t2a.co/
 	   theme: 'bootstrap', // Bootstrap is the default theme
 	   checkDupEmail: true // Should check for duplicate emails added
 	});
+
+### :heart: Like it? :heart:
+
+:star: Star it! :star:
+
+## My other projects :)
+- [MorrisJS06](https://pierresh.github.io/morris.js/): forck of Morris Chart library, no JQuery + awesomeness
+- [flightphp-skeleton](https://github.com/pierresh/flightphp-skeleton): a simple starter kit to build scalable REST APIs with FlightPHP
